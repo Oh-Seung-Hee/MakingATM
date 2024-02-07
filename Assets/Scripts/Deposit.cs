@@ -6,8 +6,13 @@ using UnityEngine.EventSystems;
 
 public class Deposit : MonoBehaviour
 {
-    [SerializeField] public GameObject alert;
     [SerializeField] private TMP_InputField inputField;
+    private Alert alertScript;
+
+    private void Awake()
+    {
+        alertScript = GameObject.Find("Alert").GetComponent<Alert>();
+    }
 
     // 버튼으로 입금
     public void DepositCashBtn()
@@ -25,7 +30,7 @@ public class Deposit : MonoBehaviour
         }
         else
         {
-            alert.SetActive(true);
+            alertScript.EnableAlert();
         }
     }
 
@@ -39,7 +44,7 @@ public class Deposit : MonoBehaviour
         }
         else
         {
-            alert.SetActive(true);
+            alertScript.EnableAlert();
         }
     }
 }

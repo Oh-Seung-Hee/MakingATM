@@ -7,7 +7,12 @@ public class MainScene : MonoBehaviour
     [SerializeField] private GameObject checkZone;
     [SerializeField] private GameObject depositZone;
     [SerializeField] private GameObject withdrawZone;
-    [SerializeField] public GameObject alert;
+    private Alert alertScript;
+
+    private void Awake()
+    {
+        alertScript = GameObject.Find("Alert").GetComponent<Alert>();
+    }
 
     private void Start()
     {
@@ -21,7 +26,7 @@ public class MainScene : MonoBehaviour
         // 입출금, 알림창 비활성화
         depositZone.SetActive(false);
         withdrawZone.SetActive(false);
-        alert.SetActive(false);
+        alertScript.DisableAlert();
         // 현금 초기화
         Money.Instance.cash = 100000;
         Money.Instance.cashTxt.text = Money.Instance.cash.ToString("N0");

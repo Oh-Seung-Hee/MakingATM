@@ -6,8 +6,13 @@ using UnityEngine.EventSystems;
 
 public class Withdraw : MonoBehaviour
 {
-    [SerializeField] public GameObject alert;
     [SerializeField] private TMP_InputField inputField;
+    private Alert alertScript;
+
+    private void Awake()
+    {
+        alertScript = GameObject.Find("Alert").GetComponent<Alert>();
+    }
 
     // 버튼으로 출금
     public void WithdrawCashBtn()
@@ -25,7 +30,7 @@ public class Withdraw : MonoBehaviour
         }
         else
         {
-            alert.SetActive(true);
+            alertScript.EnableAlert();
         }
     }
 
@@ -39,7 +44,7 @@ public class Withdraw : MonoBehaviour
         }
         else
         {
-            alert.SetActive(true);
+            alertScript.EnableAlert();
         }
     }
 }
